@@ -19,13 +19,19 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    UITapGestureRecognizer *gr = [[UITapGestureRecognizer alloc]initWithSelectorBlock:^(UIGestureRecognizer *sender, UIGestureRecognizerState state, CGPoint location) {
-        NSLog(@"OneBlock");
+    UILongPressGestureRecognizer *gr = [[UILongPressGestureRecognizer alloc]initWithSelectorBlock:^(UIGestureRecognizer *sender, UIGestureRecognizerState state, CGPoint location) {
+        NSLog(@"%@", NSStringFromCGPoint(location));
     }, ^(UIGestureRecognizer *sender, UIGestureRecognizerState state, CGPoint location) {
-        NSLog(@"TwoBlock");
+        NSLog(@"%d", state);
     }, ^(UIGestureRecognizer *sender, UIGestureRecognizerState state, CGPoint location) {
-        NSLog(@"ThreeBlock");
+        if (state == UIGestureRecognizerStateBegan) {
+            NSLog(@"Began");
+        }else if (state == UIGestureRecognizerStateEnded){
+            NSLog(@"Cancelled");
+        }
     },nil];
+
+    
     [self.testLabel addGestureRecognizer:gr];
 
 }
