@@ -18,12 +18,16 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
-    UITapGestureRecognizer *gr = [[UITapGestureRecognizer alloc]init];
-    [gr addTarget:self action:@selector(one)];
-    [gr addTarget:self action:@selector(two)];
     
+    UITapGestureRecognizer *gr = [[UITapGestureRecognizer alloc]initWithSelectorBlock:^(UIGestureRecognizer *sender, UIGestureRecognizerState state, CGPoint location) {
+        NSLog(@"OneBlock");
+    }, ^(UIGestureRecognizer *sender, UIGestureRecognizerState state, CGPoint location) {
+        NSLog(@"TwoBlock");
+    }, ^(UIGestureRecognizer *sender, UIGestureRecognizerState state, CGPoint location) {
+        NSLog(@"ThreeBlock");
+    },nil];
     [self.testLabel addGestureRecognizer:gr];
+
 }
 
 - (void)didReceiveMemoryWarning {

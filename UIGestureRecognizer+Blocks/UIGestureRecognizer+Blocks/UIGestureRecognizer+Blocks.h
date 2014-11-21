@@ -12,8 +12,6 @@ typedef void(^SelectorBlock)(UIGestureRecognizer *sender, UIGestureRecognizerSta
 
 @interface UIGestureRecognizer (Blocks)
 
-@property (nonatomic, copy) SelectorBlock selectorBlock;
-
 -(instancetype)initWithSelectorBlock:(SelectorBlock)selectorBlock, ... NS_REQUIRES_NIL_TERMINATION;
 
 @end
